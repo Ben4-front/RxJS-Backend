@@ -1,6 +1,6 @@
 const Koa = require('koa');
-const Router = require('koa-router');
-const cors = require('koa-cors');
+const Router = require('@koa/router'); 
+const cors = require('@koa/cors');
 const { faker } = require('@faker-js/faker');
 const { v4: uuidv4 } = require('uuid');
 
@@ -38,7 +38,12 @@ router.get('/messages/unread', (ctx) => {
 
 app.use(router.routes()).use(router.allowedMethods());
 
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+const port = process.env.PORT || 3000; 
+
+app.listen(port, (err) => {
+    if (err) {
+        console.error('Error starting server:', err);
+    } else {
+        console.log(`Server is running on port ${port}`);
+    }
 });
